@@ -1,0 +1,39 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'java-library'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+        content {
+            includeGroup 'org.bukkit'
+            includeGroup 'org.spigotmc'
+        }
+    }
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/central' }
+}
+
+dependencies {
+        api 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+        api 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
+        api 'org.mongodb:mongo-java-driver:3.12.12'
+}
+
+testing {
+    suites {
+        test {
+            useJUnitJupiter('5.7.2')
+        }
+    }
+}
